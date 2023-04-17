@@ -8,24 +8,25 @@
 
 # 📗 Table of Contents
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
-- [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [❓ FAQ (OPTIONAL)](#faq)
-- [📝 License](#license)
+- [📗 Table of Contents](#-table-of-contents)
+- [📖 \[Js capstone project\] ](#-js-capstone-project-)
+  - [🛠 Built With `HTML/CSS`,`Nodejs/JavaScript`, and `Webpack`](#-built-with-htmlcssnodejsjavascript-and-webpack)
+    - [Tech Stack `HTML/CSS` with `JavaScript` \& `Webpack`](#tech-stack-htmlcss-with-javascript--webpack)
+    - [Key Features ](#key-features-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Install](#install)
+    - [Usage](#usage)
+    - [Run tests](#run-tests)
+    - [Deployment](#deployment)
+  - [👥 Authors ](#-authors-)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [❓ FAQ (OPTIONAL) ](#-faq-optional-)
+  - [📝 License ](#-license-)
 
 <!-- PROJECT DESCRIPTION -->
 
@@ -141,9 +142,9 @@ Deployed in `Github Pages`. [Live Preview](https://mahabubx7.github.io/js-capsto
 
 👤 **Fickry**
 
-- GitHub: [@__](https://github.com/xxx)
-- Twitter: [@__](https://twitter.com/xxx)
-- LinkedIn: [---](https://linkedin.com/in/xxx)
+- GitHub: [@fickryiman](https://github.com/fickryiman)
+- Facebook: [@fickry.bil.iman](https://www.facebook.com/fickry.bil.iman)
+- LinkedIn: [fickry-bil-iman](https://www.linkedin.com/in/fickry-bil-iman)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -196,6 +197,6 @@ I would like to thank... themealdb.com
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./LICENSE) licensed.
+This project is [CC License](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
