@@ -1,0 +1,11 @@
+# nodejs environment
+node_modules/
+
+*-error.log
+*.error.log
+*.log
+
+# others
+.DS_Store
+.exe
+.ini
