@@ -126,7 +126,7 @@ Testing with Lint-checks:
 
 ### Deployment
 
-Deployed in `Github Pages`. [Live Preview](https://mahabubx7.github.io/js-capstone/dist/)
+Deployed in `Github Pages`. [Live Preview](https://mahabubx7.github.io/js-capstone/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
