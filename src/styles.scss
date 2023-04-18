@@ -1,5 +1,7 @@
 $themeDark: #3e3e3e;
-$bg: #fdfdfd;
+$themeBlue: #4183c4;
+$theme: #e6573e;
+$bg: #f1f1f1;
 $scroll: #6e6666;
 
 // import fonts @googleFonts
@@ -9,6 +11,93 @@ body {
   margin: 0;
   padding: 0;
   background-color: $bg;
-  color: $themeDark;
+  color: $theme;
   font-family: 'Fira Sans', sans-serif;
+}
+
+small { color: $themeBlue; }
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+// container
+.container {
+  width: 80%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+// header
+header {
+  background-color: $theme;
+  color: white;
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+
+    // first-nav-part
+    nav {
+      // logo
+      #logo {
+        font-size: 2.25rem;
+        font-weight: 600;
+      }
+
+      // mobile-menu
+      #hamberger {
+        display: none;
+        font-size: 2.25rem;
+      }
+    }
+
+    // ul#menu
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      list-style: none;
+      padding-left: 0;
+      margin-left: auto;
+      gap: 0.85rem 1.75rem;
+      text-transform: capitalize;
+      font-size: 1.15rem;
+
+      // links
+      li {
+
+        a { color: white; }
+
+        &:hover {
+          & > a {
+            color: #d4fffb;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// RESPONSIVE CSS
+@media screen and (max-width: 767.9px) {
+  // Generics
+  .container { width: calc(100% - 1rem); }
+
+  // header-component
+  header {
+    .header-nav {
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        #hamberger { display: inline-block; }
+      }
+
+      #menu { display: none; }
+    }
+  }
 }
