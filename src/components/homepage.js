@@ -1,11 +1,11 @@
 const cards = document.querySelector('.cards');
-let meals = [];
+const meals = [];
 let count = 0;
 
-const homepageComponent = (parentElement) => {
-  const getResponse = async() => {
+const homepageComponent = () => {
+  const getResponse = async () => {
     while (count < 15) {
-      const response = await fetch(
+      const response = fetch(
         'https://www.themealdb.com/api/json/v1/1/random.php',
         {
           method: 'GET',
@@ -15,16 +15,16 @@ const homepageComponent = (parentElement) => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data = await response.json();
+      const data = response.json();
       meals.push(data.meals);
-      count++;
+      count += 1;
     }
     return meals;
   };
 
   getResponse().then((meals) => {
-      const MealsData = meals;
-      cards.innerHTML = MealsData.map((meal) => `
+    const MealsData = meals;
+    cards.innerHTML = MealsData.map((meal) => `
         <div class="card">
           <img src="${meal[0].strMealThumb}" class="img-food">
           <div class="food-info">
@@ -35,7 +35,7 @@ const homepageComponent = (parentElement) => {
           <p class="likes">count likes</p>
         </div>
       `).join('');
-    });
+  });
 };
 
 export default homepageComponent;

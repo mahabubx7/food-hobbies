@@ -4,7 +4,7 @@ import headerComponent from '../components/header';
 import footerComponent from '../components/footer';
 import homepageComponent from '../components/homepage';
 
-const renderApp = async (appContainer) => {
+const renderApp = async () => {
   const { body } = document;
   // header-init
   body.insertBefore(document.createElement('header'), document.querySelector('main'));
