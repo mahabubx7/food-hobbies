@@ -108,11 +108,11 @@ main {
     max-width: 25vw;
     min-width: 25vw;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .img-food:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
   }
 
   .food-info {
@@ -140,9 +140,9 @@ main {
       cursor: pointer;
       font-size: x-large;
       color: $theme;
-      transition: all .3s ease-in-out; 
+      transition: all 0.3s ease-in-out;
     }
-    
+
     .love:hover {
       transform: scale(1.3);
       color: rgb(233, 54, 54);
@@ -160,18 +160,20 @@ main {
     width: fit-content;
     padding: 5px 10px;
     cursor: pointer;
-    box-shadow: 3px 3px 3px 1px #4c4a4b;
+    box-shadow: 3px 3px 3px 1px $theme;
     margin-top: 10px;
     margin-left: 0.5vw;
-    transition: all .3s ease-in-out; 
+    transition: all 0.2s ease-in-out;
+    border-color: $theme;
   }
 
   .button:hover {
     background-color: $theme;
     color: #fff;
     transform: scale(1.1);
+    border: none;
+    box-shadow: 3px 3px 3px 1px #bcb6b6;
   }
-  
 }
 
 // footer

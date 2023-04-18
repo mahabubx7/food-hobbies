@@ -1,3 +1,5 @@
+/* eslint-disable no-await-in-loop */
+
 const cards = document.querySelector('.cards');
 const meals = [];
 let count = 0;
@@ -5,7 +7,7 @@ let count = 0;
 const homepageComponent = () => {
   const getResponse = async () => {
     while (count < 15) {
-      const response = fetch(
+      const response = await fetch(
         'https://www.themealdb.com/api/json/v1/1/random.php',
         {
           method: 'GET',
@@ -15,7 +17,7 @@ const homepageComponent = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data = response.json();
+      const data = await response.json();
       meals.push(data.meals);
       count += 1;
     }
