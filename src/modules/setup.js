@@ -2,6 +2,7 @@
 
 import headerComponent from '../components/header';
 import footerComponent from '../components/footer';
+import homepageComponent from '../components/homepage';
 
 const renderApp = async (appContainer) => {
   const { body } = document;
@@ -9,12 +10,15 @@ const renderApp = async (appContainer) => {
   body.insertBefore(document.createElement('header'), document.querySelector('main'));
   headerComponent(body.querySelector('header')); // header-component-render
 
-  const markups = `
-    <div class="container">
-      <h1>Food Hobbies <small>JS capstone project</small></h1>
-    </div>
-  `;
-  appContainer.innerHTML = `${markups}`;
+  // const markups = `
+  //   <div class="container">
+  //     <h1>Food Hobbies <small>JS capstone project</small></h1>
+  //   </div>
+  // `;
+  // appContainer.innerHTML = `${markups}`;
+
+  body.appendChild(document.createElement('cards'), document.querySelector('main'));
+  homepageComponent(body.querySelector('cards'));
 
   body.appendChild(document.createElement('footer'), document.querySelector('main'));
   footerComponent(body.querySelector('footer')); // footer-component-render
