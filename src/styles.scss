@@ -1,6 +1,7 @@
 $themeDark: #3e3e3e;
 $themeBlue: #4183c4;
-$theme: #e6573e;
+// $theme: #e6573e;
+$theme: #da729f;
 $bg: #f1f1f1;
 $scroll: #6e6666;
 
@@ -13,6 +14,11 @@ body {
   background-color: $bg;
   color: $theme;
   font-family: 'Fira Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 100vh;
 }
 
 small { color: $themeBlue; }
@@ -77,6 +83,28 @@ header {
         }
       }
     }
+  }
+}
+
+//footer
+footer {
+  border-top: 1px solid #da729f2a;
+  border-bottom: 1px solid #da729f2a;
+  background-color: #2e2d2d0f;
+  color: rgb(57, 56, 56);
+
+  .footer-text {
+    text-align: center;
+  }
+
+  .footer-name {
+    text-decoration: none;
+    color: $theme;
+  }
+
+  .love-created {
+    color: rgb(228, 40, 40);
+    font-size: 1.2em;
   }
 }
 
