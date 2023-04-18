@@ -29,13 +29,10 @@ const homepageComponent = (parentElement) => {
           <img src="${meal[0].strMealThumb}" class="img-food">
           <div class="food-info">
             <p class="food-name">${meal[0].strMeal}</p>
+            <input type="button" class="button" value="Comments">
             <p class="love">&#10084;</p>
           </div>
           <p class="likes">count likes</p>
-          <div class="buttons">
-            <input type="button" class="button" value="Comments">
-            <input type="button" class="button" value="Reservations">
-          </div>
         </div>
       `).join('');
     });
