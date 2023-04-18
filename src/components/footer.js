@@ -5,7 +5,7 @@ const footerComponent = (parentElement) => {
       && <a href="https://github.com/mahabubx7" class="footer-name">Mahabub</a>
       under CC License.
     </h5>
-  `;  
+  `;
 
   parentElement.innerHTML = `${markups}`;
 };
