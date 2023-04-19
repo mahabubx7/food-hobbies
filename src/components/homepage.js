@@ -2,26 +2,34 @@
 /* eslint-disable no-await-in-loop */
 
 const cards = document.querySelector('.cards');
+
 const meals = [];
 let count = 0;
+const isLocalStorage = JSON.parse(localStorage.getItem('MEALS'));
 
 const homepageComponent = () => {
   const getResponse = async () => {
+    const mealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
+
+    if (isLocalStorage) {
+      return isLocalStorage;
+    }
+
     while (count < 15) {
-      const response = await fetch(
-        'https://www.themealdb.com/api/json/v1/1/random.php',
+      const response = await fetch(mealAPI,
         {
           method: 'GET',
-        },
-      );
+        });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+
       const data = await response.json();
       meals.push(data.meals);
       count += 1;
     }
+    localStorage.setItem('MEALS', JSON.stringify(meals));
     return meals;
   };
 
@@ -46,11 +54,14 @@ const homepageComponent = () => {
           </div>
           <p class="love">&#10084;</p>
         </div>
-        <p class="likes">count likes</p>
+        <p class="likes">
+          <span class="likes-counter" data-id="${meal[0].idMeal}">0</span> 
+          likes
+        </p>
       </div>
       `;
     });
-  }).then(() => {
+  }).then(async () => {
     // for comments [details pop-up]
     const commentBtns = cards.querySelectorAll('.button');
     commentBtns.forEach((btn) => {
@@ -61,6 +72,22 @@ const homepageComponent = () => {
 
       document.querySelector(`[data-id="${btn.dataset.item}"] .btn-close`).addEventListener('click', () => {
         document.querySelector(`[data-id="${btn.dataset.item}"]`).classList.add('hidden');
+      });
+    });
+
+    // likes-counter
+    const likesAPI = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/McIsZOf3EP2NPcJIfiBs/likes')
+      .then((response) => response.json())
+      .then((data) => data);
+
+    const likesCounter = cards.querySelectorAll('.likes-counter');
+    likesCounter.forEach((likeCounter) => {
+      const likesId = likeCounter.getAttribute('data-id');
+      const element = likeCounter;
+      likesAPI.forEach((likeAPI) => {
+        if (likesId === likeAPI.item_id) {
+          element.innerHTML = likeAPI.likes;
+        }
       });
     });
   });
