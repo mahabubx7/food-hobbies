@@ -80,12 +80,13 @@ const homepageComponent = () => {
               <i class="ri-git-commit-line"></i>
               <span>${meal[0].strIngredient3}</span>
             </p>
-            <h4>Recent comments</h4>
+            <h4>Add a comments</h4>
             <form class="comment-form" data-id=${meal[0].idMeal}>
               <input name="username" type="text" placeholder="Your name." />
-              <textarea name="comment" rows="5" placeholder="Write your comment."></textarea>
+              <textarea name="comment" rows="5" placeholder="Your insights."></textarea>
               <button type="submit">add comment</button>
             </form>
+            <h4>Comments (<span data-counter="comments"></span>)</h4>
             <ul class="comments" data-id=${meal[0].idMeal}>
               <li>2023-04-19 Mahabub: This is delicious!</li>
             </ul>
@@ -104,13 +105,18 @@ const homepageComponent = () => {
   }).then(async () => {
     // for comments [details pop-up]
     const commentBtns = cards.querySelectorAll('.button');
+
+    const countComments = (list) => list.length;
+
     async function renderComment(element) {
       // form
       let list = await getComments(element.dataset.id);
+
       async function renderComments() {
         // comment-list
         list = await getComments(element.dataset.id);
         const commentList = element.parentElement.querySelector('ul.comments');
+        commentList.parentElement.querySelector('[data-counter="comments"]').textContent = countComments(list);
         if (list.length > 0) {
           commentList.innerHTML = ''; // reset-first
           list.forEach((comment) => {
