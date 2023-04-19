@@ -234,19 +234,19 @@ main {
     width: fit-content;
     padding: 5px 10px;
     cursor: pointer;
-    color: #fff;
-    background-color: $theme;
+    color: $themeDark;
+    background-color: #ffe9f2e5;
     box-shadow: 2px 3px 2px $themeDark;
     margin-top: 10px;
     margin-left: 0.5vw;
     transition: all 0.1s ease-in-out;
-    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.129);
   }
 
   .button:hover {
-    background-color: $themeDark;
-    color: #fcd6e6;
-    box-shadow: 2px 3px 2px $theme;
+    background-color: rgba(17, 17, 17, 0.732);
+    color: #fff9fc;
+    box-shadow: 2px 3px 2px #f88bb7;
     // border: none;
   }
 
