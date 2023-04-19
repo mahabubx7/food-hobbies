@@ -8,10 +8,10 @@ let count = 0;
 const isLocalStorage = JSON.parse(localStorage.getItem('MEALS'));
 
 const questionButton = document.querySelector('.question-button');
-questionButton.addEventListener('click', (e) => {
+questionButton.addEventListener('click', () => {
   localStorage.removeItem('MEALS');
-  location.reload();
-})
+  window.location.reload();
+});
 
 const homepageComponent = () => {
   const getResponse = async () => {
