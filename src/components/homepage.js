@@ -130,6 +130,9 @@ const homepageComponent = () => {
           {
             method: 'POST',
             body: JSON.stringify({ ...newCommentObj, item_id: `${itemId}` }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
           },
         ).then(() => {
           // fields reset
