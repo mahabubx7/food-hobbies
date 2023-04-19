@@ -95,7 +95,6 @@ const homepageComponent = () => {
     const likesButton = cards.querySelectorAll('.love');
 
     likesButton.forEach((likeButton) => {
-      // console.log(likeButton.getAttribute('data-id'));
       likeButton.addEventListener('click', (e) => {
         const targetCounter = e.target.parentElement.nextSibling.nextSibling.children[0].innerText;
         e.target.parentElement.nextSibling.nextSibling.children[0].innerText = (+targetCounter) + 1;
