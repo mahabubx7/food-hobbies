@@ -81,10 +81,10 @@ const homepageComponent = () => {
       .then((data) => data);
 
     const likesCounter = cards.querySelectorAll('.likes-counter');
-    likesCounter.forEach(likeCounter => {
+    likesCounter.forEach((likeCounter) => {
       const likesId = likeCounter.getAttribute('data-id');
       const element = likeCounter;
-      likesAPI.forEach(likeAPI => {
+      likesAPI.forEach((likeAPI) => {
         if (likesId === likeAPI.item_id) {
           element.innerHTML = likeAPI.likes;
         }
@@ -93,26 +93,24 @@ const homepageComponent = () => {
 
     // add or post likes-counter
     const likesButton = cards.querySelectorAll('.love');
-    
-    likesButton.forEach(likeButton => {
+
+    likesButton.forEach((likeButton) => {
       // console.log(likeButton.getAttribute('data-id'));
       likeButton.addEventListener('click', (e) => {
-        const likesCounterItem = cards.querySelector('.likes-counter');
-        let targetCounter = e.target.parentElement.nextSibling.nextSibling.children[0].innerText;
+        const targetCounter = e.target.parentElement.nextSibling.nextSibling.children[0].innerText;
         e.target.parentElement.nextSibling.nextSibling.children[0].innerText = (+targetCounter) + 1;
-        
+
         fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/McIsZOf3EP2NPcJIfiBs/likes', {
           method: 'POST',
           body: JSON.stringify({
-            "item_id": likeButton.getAttribute('data-id')
+            item_id: likeButton.getAttribute('data-id'),
           }),
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
           },
-        })
-      })
-    })
-    
+        });
+      });
+    });
   });
 };
 
