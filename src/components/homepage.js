@@ -7,6 +7,12 @@ const meals = [];
 let count = 0;
 const isLocalStorage = JSON.parse(localStorage.getItem('MEALS'));
 
+const questionButton = document.querySelector('.question-button');
+questionButton.addEventListener('click', (e) => {
+  localStorage.removeItem('MEALS');
+  location.reload();
+})
+
 const homepageComponent = () => {
   const getResponse = async () => {
     const mealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
