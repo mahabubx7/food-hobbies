@@ -7,6 +7,12 @@ const meals = [];
 let count = 0;
 const isLocalStorage = JSON.parse(localStorage.getItem('MEALS'));
 
+const questionButton = document.querySelector('.question-button');
+questionButton.addEventListener('click', () => {
+  localStorage.removeItem('MEALS');
+  window.location.reload();
+});
+
 const homepageComponent = () => {
   const getResponse = async () => {
     const mealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
@@ -52,9 +58,9 @@ const homepageComponent = () => {
             <small>source: ${meal[0].strSource}</small>
             </div>
           </div>
-          <p class="love">&#10084;</p>
+          <p class="love" data-id="${meal[0].idMeal}">&#10084;</p>
         </div>
-        <p class="likes">
+        <p class="likes" >
           <span class="likes-counter" data-id="${meal[0].idMeal}">0</span> 
           likes
         </p>
@@ -75,7 +81,7 @@ const homepageComponent = () => {
       });
     });
 
-    // likes-counter
+    // get likes-counter
     const likesAPI = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/McIsZOf3EP2NPcJIfiBs/likes')
       .then((response) => response.json())
       .then((data) => data);
@@ -88,6 +94,26 @@ const homepageComponent = () => {
         if (likesId === likeAPI.item_id) {
           element.innerHTML = likeAPI.likes;
         }
+      });
+    });
+
+    // add or post likes-counter
+    const likesButton = cards.querySelectorAll('.love');
+
+    likesButton.forEach((likeButton) => {
+      likeButton.addEventListener('click', (e) => {
+        const targetCounter = e.target.parentElement.nextSibling.nextSibling.children[0].innerText;
+        e.target.parentElement.nextSibling.nextSibling.children[0].innerText = (+targetCounter) + 1;
+
+        fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/McIsZOf3EP2NPcJIfiBs/likes', {
+          method: 'POST',
+          body: JSON.stringify({
+            item_id: likeButton.getAttribute('data-id'),
+          }),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        });
       });
     });
   });

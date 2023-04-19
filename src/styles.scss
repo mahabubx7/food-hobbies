@@ -88,6 +88,27 @@ header {
   }
 }
 
+// options
+.question {
+  text-align: center;
+  color: $themeBlue;
+
+  .question-button {
+    background-color: $themeBlue;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.805);
+    // font-weight: bold;
+  }
+
+  .question-button:active {
+    box-shadow: 0 0.5px 0 rgba(0, 0, 0, 0.705);
+    transform: translateY(4px);
+  }
+}
+
 // homepage
 main {
   margin-bottom: 5vw;
@@ -98,7 +119,7 @@ main {
   justify-content: center;
   gap: 5vw;
   flex-wrap: wrap;
-  margin-top: 5vw;
+  margin-top: 3vw;
 }
 
 .card {
