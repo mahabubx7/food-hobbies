@@ -234,19 +234,25 @@ main {
     width: fit-content;
     padding: 5px 10px;
     cursor: pointer;
-    box-shadow: 3px 3px 3px 1px $theme;
+    color: #fff;
+    background-color: $theme;
+    box-shadow: 2px 3px 2px $themeDark;
     margin-top: 10px;
     margin-left: 0.5vw;
-    transition: all 0.2s ease-in-out;
-    border-color: $theme;
+    transition: all 0.1s ease-in-out;
+    border: none;
+  }
+  
+  .button:hover {
+    background-color: $themeDark;
+    color: #fcd6e6;
+    box-shadow: 2px 3px 2px $theme;
+    // border: none;
   }
 
-  .button:hover {
-    background-color: $theme;
-    color: #fff;
-    transform: scale(1.1);
-    border: none;
-    box-shadow: 3px 3px 3px 1px #bcb6b6;
+  .button:active {
+    box-shadow: 0 0.5px 0 rgba(0, 0, 0, 0.705);
+    transform: translateY(4px);
   }
 }
 
