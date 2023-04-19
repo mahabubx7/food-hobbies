@@ -39,7 +39,9 @@ const homepageComponent = () => {
             <span class="btn-close">
               <i class="ri-close-circle-line"></i>
             </span>
-            <p>comment area.</p>
+            <img src="${meal[0].strMealThumb}" alt="${meal[0].idMeal}" />
+            <p>${meal[0].strInstructions}</p>
+            <small>source: ${meal[0].strSource}</small>
             </div>
           </div>
           <p class="love">&#10084;</p>
