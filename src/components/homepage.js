@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-await-in-loop */
 
 const cards = document.querySelector('.cards');
@@ -26,17 +27,40 @@ const homepageComponent = () => {
 
   getResponse().then((meals) => {
     const MealsData = meals;
-    cards.innerHTML = MealsData.map((meal) => `
-        <div class="card">
-          <img src="${meal[0].strMealThumb}" class="img-food">
-          <div class="food-info">
-            <p class="food-name">${meal[0].strMeal}</p>
-            <input type="button" class="button" value="Comments">
-            <p class="love">&#10084;</p>
+    MealsData.map((meal) => {
+      cards.innerHTML += `
+      <div class="card">
+        <img src="${meal[0].strMealThumb}" class="img-food">
+        <div class="food-info">
+          <p class="food-name">${meal[0].strMeal}</p>
+          <input type="button" class="button" value="Comments" data-item="${meal[0].idMeal}">
+          <div class="comment-box hidden" data-id="${meal[0].idMeal}">
+            <div class="box-area">
+            <span class="btn-close">
+              <i class="ri-close-circle-line"></i>
+            </span>
+            <p>comment area.</p>
+            </div>
           </div>
-          <p class="likes">count likes</p>
+          <p class="love">&#10084;</p>
         </div>
-      `).join('');
+        <p class="likes">count likes</p>
+      </div>
+      `;
+    });
+  }).then(() => {
+    // for comments [details pop-up]
+    const commentBtns = cards.querySelectorAll('.button');
+    commentBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.comment-box').forEach((box) => box.classList.add('hidden'));
+        document.querySelector(`[data-id="${btn.dataset.item}"]`).classList.remove('hidden');
+      });
+
+      document.querySelector(`[data-id="${btn.dataset.item}"] .btn-close`).addEventListener('click', () => {
+        document.querySelector(`[data-id="${btn.dataset.item}"]`).classList.add('hidden');
+      });
+    });
   });
 };
 
