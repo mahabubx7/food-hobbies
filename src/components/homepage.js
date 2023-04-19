@@ -39,6 +39,18 @@ const homepageComponent = () => {
     return meals;
   };
 
+  const getComments = async (itemId) => {
+    let comments = await fetch(
+      `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/McIsZOf3EP2NPcJIfiBs/comments?item_id=${itemId}`,
+      {
+        method: 'GET',
+      },
+    );
+
+    comments = await comments.json();
+    return comments.error ? [] : comments;
+  };
+
   getResponse().then((meals) => {
     const MealsData = meals;
     MealsData.map((meal) => {
@@ -54,14 +66,36 @@ const homepageComponent = () => {
               <i class="ri-close-circle-line"></i>
             </span>
             <img src="${meal[0].strMealThumb}" alt="${meal[0].idMeal}" />
-            <p>${meal[0].strInstructions}</p>
+            <h3>${meal[0].strMeal}</h3>
+            <p>
+              <strong>${meal[0].strCategory}</strong>
+              <i class="ri-git-commit-line"></i>
+              <strong>${meal[0].strArea}</strong>
+            </p>
+            <h4>Top 3 Ingredients</h4>
+            <p>
+              <span>${meal[0].strIngredient1}</span>
+              <i class="ri-git-commit-line"></i>
+              <span>${meal[0].strIngredient2}</span>
+              <i class="ri-git-commit-line"></i>
+              <span>${meal[0].strIngredient3}</span>
+            </p>
+            <h4>Recent comments</h4>
+            <form class="comment-form" data-id=${meal[0].idMeal}>
+              <input name="username" type="text" placeholder="Your name." />
+              <textarea name="comment" rows="5" placeholder="Write your comment."></textarea>
+              <button type="submit">add comment</button>
+            </form>
+            <ul class="comments" data-id=${meal[0].idMeal}>
+              <li>2023-04-19 Mahabub: This is delicious!</li>
+            </ul>
             <small>source: ${meal[0].strSource}</small>
             </div>
           </div>
           <p class="love" data-id="${meal[0].idMeal}">&#10084;</p>
         </div>
         <p class="likes" >
-          <span class="likes-counter" data-id="${meal[0].idMeal}">0</span> 
+          <span class="likes-counter" data-id="${meal[0].idMeal}">0</span>
           likes
         </p>
       </div>
@@ -70,10 +104,57 @@ const homepageComponent = () => {
   }).then(async () => {
     // for comments [details pop-up]
     const commentBtns = cards.querySelectorAll('.button');
+    async function renderComment(element) {
+      // form
+      let list = await getComments(element.dataset.id);
+      async function renderComments() {
+        // comment-list
+        list = await getComments(element.dataset.id);
+        const commentList = element.parentElement.querySelector('ul.comments');
+        if (list.length > 0) {
+          commentList.innerHTML = ''; // reset-first
+          list.forEach((comment) => {
+            commentList.innerHTML += `<li><i>${comment.creation_date}</i> <b>${comment.username}</b>: ${comment.comment}</li>`;
+          });
+        } else {
+          commentList.innerHTML = '<li><i>No comments found yet!</i></li>';
+        }
+      }
+      async function handleForm(itemId) {
+        const newCommentObj = {
+          username: element.querySelector('input').value,
+          comment: element.querySelector('textarea').value,
+        };
+        await fetch(
+          'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/McIsZOf3EP2NPcJIfiBs/comments',
+          {
+            method: 'POST',
+            body: JSON.stringify({ ...newCommentObj, item_id: `${itemId}` }),
+          },
+        ).then(() => {
+          // fields reset
+          element.querySelector('input').value = '';
+          element.querySelector('textarea').value = '';
+          renderComments(); // re-render comment list
+        }).catch((err) => {
+          // eslint-disable-next-line no-console
+          console.error(err);
+        });
+      }
+
+      renderComments(); // initial render
+
+      element.querySelector('button[type="submit"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        handleForm(e.target.parentElement.dataset.id);
+      });
+    }
     commentBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.comment-box').forEach((box) => box.classList.add('hidden'));
+        document.querySelectorAll('.comment-box').forEach(async (box) => box.classList.add('hidden'));
         document.querySelector(`[data-id="${btn.dataset.item}"]`).classList.remove('hidden');
+        renderComment(document.querySelector(`[data-id="${btn.dataset.item}"]`));
       });
 
       document.querySelector(`[data-id="${btn.dataset.item}"] .btn-close`).addEventListener('click', () => {
