@@ -9,30 +9,25 @@ const isLocalStorage = JSON.parse(localStorage.getItem('MEALS'));
 
 const homepageComponent = () => {
   const getResponse = async () => {
-    
     const mealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
     if (isLocalStorage) {
       return isLocalStorage;
     }
 
-    
     while (count < 15) {
       const response = await fetch(mealAPI,
         {
           method: 'GET',
-        },
-      );
+        });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const data = await response.json();
-      console.log(data)
       meals.push(data.meals);
       count += 1;
-      
     }
     localStorage.setItem('MEALS', JSON.stringify(meals));
     return meals;
@@ -78,23 +73,23 @@ const homepageComponent = () => {
       document.querySelector(`[data-id="${btn.dataset.item}"] .btn-close`).addEventListener('click', () => {
         document.querySelector(`[data-id="${btn.dataset.item}"]`).classList.add('hidden');
       });
-    }); 
+    });
 
     // likes-counter
-    const likesAPI = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/McIsZOf3EP2NPcJIfiBs/likes',)
-      .then(response => response.json())
-      .then(data => data);
+    const likesAPI = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/McIsZOf3EP2NPcJIfiBs/likes')
+      .then((response) => response.json())
+      .then((data) => data);
 
     const likesCounter = cards.querySelectorAll('.likes-counter');
-    likesCounter.forEach(likeCounter => {
+    likesCounter.forEach((likeCounter) => {
       const likesId = likeCounter.getAttribute('data-id');
       const element = likeCounter;
-      likesAPI.forEach(likeAPI => {
-        if(likesId === likeAPI.item_id) {
+      likesAPI.forEach((likeAPI) => {
+        if (likesId === likeAPI.item_id) {
           element.innerHTML = likeAPI.likes;
         }
-      })
-    }) 
+      });
+    });
   });
 };
 
