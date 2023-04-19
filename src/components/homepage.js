@@ -5,15 +5,15 @@ const cards = document.querySelector('.cards');
 
 const meals = [];
 let count = 0;
-// const isLocalStorage = JSON.parse(localStorage.getItem('MEALS'));
+const isLocalStorage = JSON.parse(localStorage.getItem('MEALS'));
 
 const homepageComponent = () => {
   const getResponse = async () => {
     const mealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
-    // if (isLocalStorage) {
-    //   return isLocalStorage;
-    // }
+    if (isLocalStorage) {
+      return isLocalStorage;
+    }
 
     while (count < 15) {
       const response = await fetch(mealAPI,
@@ -29,7 +29,7 @@ const homepageComponent = () => {
       meals.push(data.meals);
       count += 1;
     }
-    // localStorage.setItem('MEALS', JSON.stringify(meals));
+    localStorage.setItem('MEALS', JSON.stringify(meals));
     return meals;
   };
 
