@@ -1,0 +1,327 @@
+$themeDark: #3e3e3e;
+$themeBlue: #4183c4;
+// $theme: #e6573e;
+$theme: #da729f;
+$bg: #f1f1f1;
+$scroll: #6e6666;
+// import fonts @googleFonts
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700;900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $bg;
+  color: $theme;
+  font-family: 'Fira Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 100vh;
+}
+small { color: $themeBlue; }
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+.hidden { display: none !important; }
+// container
+.container {
+  width: 80%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+// header
+header {
+  background-color: $theme;
+  color: white;
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    // first-nav-part
+    nav {
+      // logo
+      #logo {
+        font-size: 2.25rem;
+        font-weight: 600;
+        background: url('../assets/logo.png');
+        display: block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 10vw;
+        height: 4vw;
+      }
+      // mobile-menu
+      #hamberger {
+        display: none;
+        font-size: 2.25rem;
+      }
+    }
+    // ul#menu
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      list-style: none;
+      padding-left: 0;
+      margin-left: auto;
+      gap: 0.85rem 1.75rem;
+      text-transform: capitalize;
+      font-size: 1.15rem;
+      // links
+      li {
+        a { color: white; }
+
+        &:hover {
+          & > a {
+            color: #d4fffb;
+          }
+        }
+      }
+    }
+  }
+}
+// homepage
+main {
+  margin-bottom: 5vw;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 5vw;
+  flex-wrap: wrap;
+  margin-top: 5vw;
+}
+
+// options
+.question {
+  text-align: center;
+  color: $themeBlue;
+
+  .question-button {
+    background-color: $themeBlue;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.805);
+  }
+
+  .question-button:hover {
+    background-color: #458de4;
+  }
+
+  .question-button:active {
+    box-shadow: 0 0.5px 0 rgba(0, 0, 0, 0.705);
+    transform: translateY(4px);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  .img-food {
+    cursor: pointer;
+    max-width: 25vw;
+    min-width: 25vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .img-food:hover {
+    transform: scale(1.1);
+  }
+
+  .food-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: $themeDark;
+
+    .food-name {
+      cursor: pointer;
+      margin-left: 0.5vw;
+      flex-wrap: nowrap;
+      max-width: 25vw;
+      min-width: 25vw;
+      width: 80%;
+    }
+
+    .love {
+      align-self: flex-end;
+      margin-right: 0.75vw;
+      margin-top: -4vw;
+      padding: 10px;
+      cursor: pointer;
+      font-size: x-large;
+      color: $theme;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .love:hover {
+      transform: scale(1.3);
+      color: rgb(233, 54, 54);
+    }
+    // comments
+    .comment-box {
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: rgba(0, 0, 0, 0.35);
+      z-index: 99;
+
+      .box-area {
+        display: flex;
+        width: calc(100% - 1rem);
+        max-width: 500px;
+        margin: 2rem auto;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: white;
+        color: #3e3e3e;
+        padding: 1rem 0.5rem;
+        z-index: 999;
+        border-radius: 0.4rem;
+        overflow-y: scroll;
+        max-height: 70vh;
+
+        .btn-close {
+          display: inline-block;
+          margin-left: auto;
+          font-size: 1.5rem;
+          color: $theme;
+          margin-right: 1rem;
+        }
+
+        h3 { text-align: center; }
+
+        h3,
+        h4 {
+          margin: 1rem;
+        }
+
+        // img
+        img {
+          display: inline-block;
+          margin: 0.35rem auto;
+          width: calc(100% - 1rem);
+          object-fit: cover;
+        }
+
+        // comment-form
+        .comment-form {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          padding: 0.5rem;
+
+          input,
+          textarea {
+            padding: 0.35rem;
+            outline: 0;
+          }
+
+          button[type="submit"] {
+            display: inline-block;
+            text-transform: capitalize;
+            outline: 0;
+            border: 1px solid $theme;
+            padding: 0.35rem 0.85rem;
+            cursor: pointer;
+
+            &:hover {
+              background-color: $theme;
+              color: white;
+            }
+          }
+        }
+
+        .comments {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          list-style: none;
+        }
+
+        // p
+        p {
+          margin: 1rem;
+          color: #6e6666;
+        }
+      }
+    }
+  }
+
+  .likes {
+    align-self: flex-end;
+    margin-top: -2vw;
+    margin-right: 0.5vw;
+    color: $themeDark;
+  }
+
+  .button {
+    width: fit-content;
+    padding: 5px 10px;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px 1px $theme;
+    margin-top: 10px;
+    margin-left: 0.5vw;
+    transition: all 0.2s ease-in-out;
+    border-color: $theme;
+  }
+
+  .button:hover {
+    background-color: $theme;
+    color: #fff;
+    border-color: rgba(0, 0, 0, 0.148);
+    box-shadow: 3px 3px 3px 1px #bcb6b6;
+  }
+}
+// footer
+footer {
+  border-top: 1px solid #da729f2a;
+  border-bottom: 1px solid #da729f2a;
+  background-color: #2e2d2d0f;
+  color: rgb(57, 56, 56);
+
+  .footer-text {
+    text-align: center;
+  }
+
+  .footer-name {
+    text-decoration: none;
+    color: $theme;
+  }
+
+  .love-created {
+    color: rgb(228, 40, 40);
+    font-size: 1.2em;
+  }
+}
+// RESPONSIVE CSS
+@media screen and (max-width: 767.9px) {
+  // Generics
+  .container { width: calc(100% - 1rem); }
+  // header-component
+  header {
+    .header-nav {
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        #hamberger { display: inline-block; }
+      }
+      #menu { display: none; }
+    }
+  }
+}
