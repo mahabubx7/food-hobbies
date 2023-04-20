@@ -1,19 +1,19 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-await-in-loop */
 
-const cards = document.querySelector('.cards');
+import commentCounter from '../modules/commentCounter';
 
-const meals = [];
-let count = 0;
-const isLocalStorage = JSON.parse(localStorage.getItem('MEALS'));
+const homepageComponent = async (element) => {
+  const meals = [];
+  let count = 0;
+  const isLocalStorage = JSON.parse(localStorage.getItem('MEALS'));
 
-const questionButton = document.querySelector('.question-button');
-questionButton.addEventListener('click', () => {
-  localStorage.removeItem('MEALS');
-  window.location.reload();
-});
+  const questionButton = document.querySelector('.question-button');
+  questionButton.addEventListener('click', () => {
+    localStorage.removeItem('MEALS');
+    window.location.reload();
+  });
 
-const homepageComponent = () => {
   const getResponse = async () => {
     const mealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
@@ -54,7 +54,7 @@ const homepageComponent = () => {
   getResponse().then((meals) => {
     const MealsData = meals;
     MealsData.map((meal) => {
-      cards.innerHTML += `
+      element.innerHTML += `
       <div class="card">
         <img src="${meal[0].strMealThumb}" class="img-food">
         <div class="food-info">
@@ -86,7 +86,7 @@ const homepageComponent = () => {
               <textarea name="comment" rows="5" placeholder="Your insights."></textarea>
               <button type="submit">add comment</button>
             </form>
-            <h4>Comments (<span data-counter="comments"></span>)</h4>
+            <h4 class="comment-count"></h4>
             <ul class="comments" data-id=${meal[0].idMeal}>
               <li>2023-04-19 Mahabub: This is delicious!</li>
             </ul>
@@ -104,9 +104,7 @@ const homepageComponent = () => {
     });
   }).then(async () => {
     // for comments [details pop-up]
-    const commentBtns = cards.querySelectorAll('.button');
-
-    const countComments = (list) => list.length;
+    const commentBtns = element.querySelectorAll('.button');
 
     async function renderComment(element) {
       // form
@@ -116,15 +114,16 @@ const homepageComponent = () => {
         // comment-list
         list = await getComments(element.dataset.id);
         const commentList = element.parentElement.querySelector('ul.comments');
-        commentList.parentElement.querySelector('[data-counter="comments"]').textContent = countComments(list);
+        // const comments = commentList.parentElement.querySelector('[data-counter="comments"]');
+        commentList.innerHTML = ''; // reset-first
         if (list.length > 0) {
-          commentList.innerHTML = ''; // reset-first
           list.forEach((comment) => {
             commentList.innerHTML += `<li><i>${comment.creation_date}</i> <b>${comment.username}</b>: ${comment.comment}</li>`;
           });
-        } else {
-          commentList.innerHTML = '<li><i>No comments found yet!</i></li>';
         }
+        const countHead = element.parentElement.querySelector('h4.comment-count');
+        // console.log(countHead);
+        await commentCounter(list, countHead);
       }
       async function handleForm(itemId) {
         const newCommentObj = {
@@ -176,7 +175,7 @@ const homepageComponent = () => {
       .then((response) => response.json())
       .then((data) => data);
 
-    const likesCounter = cards.querySelectorAll('.likes-counter');
+    const likesCounter = element.querySelectorAll('.likes-counter');
     likesCounter.forEach((likeCounter) => {
       const likesId = likeCounter.getAttribute('data-id');
       const element = likeCounter;
@@ -188,7 +187,7 @@ const homepageComponent = () => {
     });
 
     // add or post likes-counter
-    const likesButton = cards.querySelectorAll('.love');
+    const likesButton = element.querySelectorAll('.love');
 
     likesButton.forEach((likeButton) => {
       likeButton.addEventListener('click', (e) => {

@@ -10,22 +10,20 @@ const renderApp = async () => {
   body.insertBefore(document.createElement('header'), document.querySelector('main'));
   headerComponent(body.querySelector('header')); // header-component-render
 
-  // const markups = `
-  //   <div class="container">
-  //     <h1>Food Hobbies <small>JS capstone project</small></h1>
-  //   </div>
-  // `;
-  // appContainer.innerHTML = `${markups}`;
-
-  body.appendChild(document.createElement('cards'), document.querySelector('main'));
-  homepageComponent(body.querySelector('cards'));
+  const cardsContainer = document.querySelector('.items');
+  const cards = document.createElement('div');
+  cards.classList.add('cards');
+  await homepageComponent(cards);
+  cardsContainer.appendChild(cards);
+  // console.log(cards.innerHTML);
+  // document.addEventListener('DOMContentLoaded', () => console.log('LOADED...!'));
 
   body.appendChild(document.createElement('footer'), document.querySelector('main'));
   footerComponent(body.querySelector('footer')); // footer-component-render
 };
 
-const setupApp = async (element) => {
-  await renderApp(element); // render first-initial DOM
+const setupApp = async () => {
+  await renderApp(); // render first-initial DOM
 };
 
 export default setupApp;

@@ -1,4 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/extensions */
+
+import 'whatwg-fetch';
+// import '../src/styles.scss';
 import { setupApp } from '../src/modules';
 
-setupApp(document.querySelector('#app')); // mounting our app
+setupApp(); // mounting our app
