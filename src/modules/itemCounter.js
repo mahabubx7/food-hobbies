@@ -1,4 +1,4 @@
-const itemCounterFunction = async(item, element) => {
+const itemCounterFunction = async (item, element) => {
   if (item.length === 0 || !item) {
     element.innerHTML = ' (0)';
   } else {
