@@ -104,6 +104,10 @@ main {
     box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.805);
   }
 
+  .question-button:hover {
+    background-color: #458de4;
+  }
+
   .question-button:active {
     box-shadow: 0 0.5px 0 rgba(0, 0, 0, 0.705);
     transform: translateY(4px);
@@ -273,8 +277,7 @@ main {
   .button:hover {
     background-color: $theme;
     color: #fff;
-    transform: scale(1.1);
-    border: none;
+    border-color: rgba(0, 0, 0, 0.148);
     box-shadow: 3px 3px 3px 1px #bcb6b6;
   }
 }

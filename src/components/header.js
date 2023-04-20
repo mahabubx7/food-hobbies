@@ -8,9 +8,9 @@ const headerComponent = (parentElement) => {
       <span id='hamberger'><i class="ri-menu-3-line"></i></span>
     </nav>
     <ul id='menu'>
-      <li><a href='#' data-page='home'>home</a></li>
-      <li><a href='#' data-page='categories'>categories</a></li>
-      <li><a href='#' data-page='search'>search meals</a></li>
+      <li><a href='#' data-page='areas'>meal areas</a></li>
+      <li><a href='#' data-page='categories'>meal categories</a></li>
+      <li><a href='#' data-page='ingredients'>meal ingredients</a></li>
     </ul>
   </nav>
   `;
