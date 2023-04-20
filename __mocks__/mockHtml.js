@@ -13,7 +13,7 @@ export default document.body.innerHTML = `
   <main>
     <section class="items">
       <div class="question">
-        <p>Randomly selected meals, would you like another meals option?</p>
+        <p>Randomly selected meals<span class="item-counter"></span>, would you like another meals option?</p>
         <input type="button" class="question-button" value="YES, PLEASE">
       </div>
     </section>

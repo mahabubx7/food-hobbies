@@ -2,6 +2,7 @@
 /* eslint-disable no-await-in-loop */
 
 import commentCounter from '../modules/commentCounter';
+import itemCounterFunction from '../modules/itemCounter';
 
 const homepageComponent = async (element) => {
   const meals = [];
@@ -205,6 +206,12 @@ const homepageComponent = async (element) => {
         });
       });
     });
+
+    // item counter
+    const itemCounter = document.querySelector('.item-counter');
+    console.log(itemCounter);
+    itemCounterFunction(JSON.parse(localStorage.getItem('MEALS')), itemCounter);
+
   });
 };
 
