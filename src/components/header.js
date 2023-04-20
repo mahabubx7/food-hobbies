@@ -4,7 +4,7 @@ const headerComponent = (parentElement) => {
   const markups = `
   <nav class="container header-nav">
     <nav>
-      <span id='logo'>food hobbies.</span>
+      <span id='logo'></span>
       <span id='hamberger'><i class="ri-menu-3-line"></i></span>
     </nav>
     <ul id='menu'>
